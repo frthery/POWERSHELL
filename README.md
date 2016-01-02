@@ -4,7 +4,7 @@ This folder contains some usefull powershell scripts.
 GetCleanRomset.ps1
 =======================
 Open powershell prompt, then:
-> wget https://raw.githubusercontent.com/frthery/POWERSHELL/master/GetCleanRomset.ps1 -OutFile GetCleanRomset.ps1
+Get file: wget https://raw.githubusercontent.com/frthery/POWERSHELL/master/GetCleanRomset.ps1 -OutFile GetCleanRomset.ps1
 
 Sample:
-> .\GetCleanRomset.ps1 -InputFolder ./roms -Includes "(France),(Europe),(Usa)" -Excludes "(Rev 1),(Proto)" -Clean $true
+Execution: .\GetCleanRomset.ps1 -InputFolder ./roms -Includes "(France),(Europe),(Usa)" -Excludes "(Rev 1),(Proto)" -Clean $true
