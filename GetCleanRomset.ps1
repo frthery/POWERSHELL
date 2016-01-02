@@ -47,7 +47,6 @@ function fCopyFile([string] $entry, [string] $filters) {
 			$filtersStr=$filters.split(',')
 			foreach ($f in $filtersStr) {
 				$current=$title+"*"+$f+"*"
-				echo $current
 				if (Test-Path $InputFolder"\"$current) {
 					fLogger ("FIND AND COPY FILE ["+$InputFolder+"\"+$current+"]!")
 					copy-item -Path $InputFolder"\"$current -Destination $outputFolder
