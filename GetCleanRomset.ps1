@@ -40,7 +40,7 @@ function fCopyFile([string] $entry, [string] $filters) {
 		else {
 			# CHECK IF ROM IS ALREADY EXISTS INTO OUTPUT FOLDER
 			if ((Test-Path $outputFolder"\"$title"*") -eq $true) {
-				fLogger ("WARNING! ["+$outputFolder+"\"+$title+"] already exists.")
+				fLogger ("WARNING! ["+$outputFolder+"\"+$title+"] ALREADY EXISTS.")
 				return;
 			}
 			
