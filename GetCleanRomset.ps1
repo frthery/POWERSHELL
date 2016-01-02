@@ -4,7 +4,7 @@ param (
 	$InputFolder,
 	$Includes,
 	$Excludes="unknown",
-	$Clean = $false
+	$Clean=$false
 )
 
 # Method to trace
