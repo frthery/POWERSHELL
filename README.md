@@ -8,3 +8,9 @@ wget https://raw.githubusercontent.com/frthery/POWERSHELL/master/GetCleanRomset.
 
 Sample:<br/>
 .\GetCleanRomset.ps1 -InputFolder ./roms -Includes "(France),(Europe),(Usa)" -Excludes "(Rev 1),(Proto)" -Clean $true
+
+arguments:
+-InputFolder : roms folder
+-Includes : files to includes
+-Excludes : files to excludes
+-Clean : delete duplicated roms
