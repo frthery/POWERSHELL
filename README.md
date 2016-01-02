@@ -1,5 +1,8 @@
 # POWERSHELL
+This folder contains some usefull powershell scripts.
 
+GetCleanRomset.ps1
+=======================
 Open powershell prompt, then:
 > wget https://raw.githubusercontent.com/frthery/POWERSHELL/master/GetCleanRomset.ps1 -OutFile GetCleanRomset.ps1
 
