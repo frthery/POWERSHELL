@@ -12,5 +12,5 @@ Sample:<br/>
 Arguments:<br/>
 -InputFolder : roms folder<br/>
 -Includes    : files to includes<br/>
--Excludes    : files to excludes<br/>
--Clean       : delete duplicated roms<br/>
+-Excludes    : files to excludes (Optional)<br/>
+-Clean       : delete duplicated roms (Optional)<br/>
