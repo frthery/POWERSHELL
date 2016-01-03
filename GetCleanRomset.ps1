@@ -70,7 +70,6 @@ function GetGameTitle($game) {
 	}
 	
 	$tgame=$tgame -replace "(\((.*?)\))", ""
-	$tgame=$tgame -replace "(\[(.*?)\])", ""
 	$tgame=$tgame.Trim()
 	
 	#write-host [$game] [$tgame]
