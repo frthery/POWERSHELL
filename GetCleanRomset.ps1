@@ -38,14 +38,15 @@ function fCopyFile([string] $entry, [array] $includes, [array] $excludes) {
 			copy-item -Path $entry -Destination $outputFolder
 		}
 		else {
-			# CHECK IF ROM IS ALREADY EXISTS INTO OUTPUT FOLDER
-			if ((Test-Path $outputFolder"\"$title"*") -eq $true) {
-				fLogger ("WARNING! ["+$outputFolder+"\"+$title+"] ALREADY EXISTS.")
-				return;
-			}
-			
 			foreach ($f in $includes) {
 				$current=$title+" "+$f.Trim("*")+"*"
+				
+				# CHECK IF ROM IS ALREADY EXISTS INTO OUTPUT FOLDER
+				if (Test-Path $outputFolder"\"$current) {
+					fLogger ("WARNING! ["+$outputFolder+"\"+$title+"] ALREADY EXISTS.")
+					break;
+				}
+			
 				if (Test-Path $InputFolder"\"$current -Exclude $excludes) {
 					fLogger ("FIND AND COPY FILE ["+$InputFolder+"\"+$current+"]!")
 					copy-item -Path $InputFolder"\"$current -Destination $outputFolder
