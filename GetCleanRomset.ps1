@@ -2,6 +2,7 @@
 #### PARAMS
 param (
 	$InputFolder,
+	$OutputFolder="./output",
 	$Includes,
 	$Excludes="unknown",
 	$Clean=$false
@@ -86,12 +87,11 @@ $pathToLogFile = $scriptName+".log.txt"
 
 $IncludesArr=$null
 $ExcludesArr=$null
-$OutputFolder='./output'
 ###
 
 if (($args.Count -gt 1) -Or ($args[0] -eq "-h")) {
 	#fLogger ("ERROR! [ "+$args.Count+" ] missing or wrong arguments.")
-	fLogger ("USAGE: "+$scriptName+" -InputFolder <<roms_folder>> [-Includes '<<include_roms>>'] [-Excludes '<<exclude_roms>>'] [-Clean '$true|$false']")
+	fLogger ("USAGE: "+$scriptName+" -InputFolder <<roms_folder>> [-OutputFolder <<roms_destination_folder>>] [-Includes '<<include_roms>>'] [-Excludes '<<exclude_roms>>'] [-Clean '$true|$false']")
 	exit -1
 }
 
