@@ -49,7 +49,7 @@ function fCopyFile([string] $entry, [array] $includes, [array] $excludes) {
 			
 				if (Test-Path $InputFolder"\"$current -Exclude $excludes) {
 					fLogger ("FIND AND COPY FILE ["+$InputFolder+"\"+$current+"]!")
-					copy-item -Path $InputFolder"\"$current -Destination $OutputFolder
+					copy-item -Path $InputFolder"\"$current -Exclude $excludes -Destination $OutputFolder
 					break;
 				}
 			}
