@@ -22,8 +22,8 @@ function fLogger([string] $str) {
 }
 
 function fCopyFile([string] $entry, [array] $includes, [array] $excludes) {
-	if(!(Test-Path -Path $outputFolder)){
-		New-Item -ItemType directory -Path $outputFolder > $null
+	if(!(Test-Path -Path $OutputFolder)){
+		New-Item -ItemType directory -Path $OutputFolder > $null
 		#fLogger ("directory ["+$output+"] created.")
 	}
 
@@ -34,22 +34,22 @@ function fCopyFile([string] $entry, [array] $includes, [array] $excludes) {
 	if((Test-Path $entry)) {
 		if ($Clean -eq $false) {
 			fLogger ("FIND AND COPY FILE ["+$entry+"]!")
-			#copy-item -Path $entry -Include @($current) -Destination $outputFolder
-			copy-item -Path $entry -Destination $outputFolder
+			#copy-item -Path $entry -Include @($current) -Destination $OutputFolder
+			copy-item -Path $entry -Destination $OutputFolder
 		}
 		else {
 			foreach ($f in $includes) {
 				$current=$title+" "+$f.Trim("*")+"*"
 				
 				# CHECK IF ROM IS ALREADY EXISTS INTO OUTPUT FOLDER
-				if (Test-Path $outputFolder"\"$current) {
-					fLogger ("WARNING! ["+$outputFolder+"\"+$title+"] ALREADY EXISTS.")
+				if (Test-Path $OutputFolder"\"$current) {
+					fLogger ("WARNING! ["+$OutputFolder+"\"+$title+"] ALREADY EXISTS.")
 					break;
 				}
 			
 				if (Test-Path $InputFolder"\"$current -Exclude $excludes) {
 					fLogger ("FIND AND COPY FILE ["+$InputFolder+"\"+$current+"]!")
-					copy-item -Path $InputFolder"\"$current -Destination $outputFolder
+					copy-item -Path $InputFolder"\"$current -Destination $OutputFolder
 					break;
 				}
 			}
@@ -84,7 +84,9 @@ $scriptPath 		= ($MyInvocation.MyCommand).Definition.Replace(($MyInvocation.MyCo
 $activeOutputTraces = $true
 $pathToLogFile = $scriptName+".log.txt"
 
-$outputFolder='./output'
+$IncludesArr=$null
+$ExcludesArr=$null
+$OutputFolder='./output'
 ###
 
 if (($args.Count -gt 1) -Or ($args[0] -eq "-h")) {
@@ -96,7 +98,7 @@ if (($args.Count -gt 1) -Or ($args[0] -eq "-h")) {
 if (Test-Path $InputFolder) {
 	"["+$pathToLogFile+" generated at "+[DateTime]::Now.ToString()+"]" > $pathToLogFile
 	
-	fLogger ("START: FILTER FOLDER ["+$InputFolder+"]")	
+	fLogger ("START: CLEAN ROMS FOLDER ["+$InputFolder+"]")	
 	
 	$Includes="*"+$Includes+"*"
 	$Includes=$Includes.Replace(",", "*,*")
@@ -107,7 +109,7 @@ if (Test-Path $InputFolder) {
 	$ExcludesArr=$Excludes.split(',')
 	
 	Get-ChildItem $InputFolder"\*" -Include @($IncludesArr) -Exclude @($ExcludesArr) | sort Name | ForEach-Object { fCopyFile $_ $IncludesArr $ExcludesArr; }
-	fLogger ("END: CHECK OUTPUT LOCATION ["+$outputFolder+"].")
+	fLogger ("END: CHECK OUTPUT LOCATION ["+$OutputFolder+"].")
 }
 else {
 	fLogger ("ERROR! ["+$InputFolder+"] not found.")
