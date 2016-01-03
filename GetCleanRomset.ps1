@@ -25,33 +25,33 @@ function fLogger([string] $str) {
 function fCopyFile([string] $entry, [array] $includes, [array] $excludes) {
 	if(!(Test-Path -Path $OutputFolder)){
 		New-Item -ItemType directory -Path $OutputFolder > $null
-		#fLogger ("directory ["+$output+"] created.")
 	}
 
 	$title=GetGameTitle $entry
 	$filename=[io.path]::GetFileName($entry)
 
 	fLogger ("CHECK ENTRY ["+$entry+"]...")
-	if((Test-Path $entry)) {
+	if(Test-Path -literalpath "$entry") {
 		if ($Clean -eq $false) {
 			fLogger ("FIND AND COPY FILE ["+$entry+"]!")
 			#copy-item -Path $entry -Include @($current) -Destination $OutputFolder
-			copy-item -Path $entry -Destination $OutputFolder
+			copy-item -literalpath "$entry" -Destination $OutputFolder
 		}
 		else {
 			foreach ($f in $includes) {
 				$current=$title+" "+$f.Trim("*")+"*"
+				#echo $current
 				
 				# CHECK IF A ROM IS ALREADY EXISTING INTO OUTPUT FOLDER
-				if (Test-Path $OutputFolder"\"$current) {
+				if (Test-Path "$OutputFolder\$current") {
 					fLogger ("WARNING! ["+$OutputFolder+"\"+$title+"] ALREADY EXISTS.")
 					break;
 				}
 			
 				# CHECK AND COPY ROMS
-				if (Test-Path $InputFolder"\"$current -Exclude $excludes) {
+				if (Test-Path "$InputFolder\$current" -Exclude $excludes) {
 					fLogger ("FIND AND COPY FILE ["+$InputFolder+"\"+$current+"]!")
-					copy-item -Path $InputFolder"\"$current -Exclude $excludes -Destination $OutputFolder
+					copy-item -Path "$InputFolder\$current" -Exclude $excludes -Destination $OutputFolder
 					break;
 				}
 			}
@@ -71,6 +71,7 @@ function GetGameTitle($game) {
 	}
 	
 	$tgame=$tgame -replace "(\((.*?)\))", ""
+	$tgame=$tgame -replace "(\[(.*?)\])", ""
 	$tgame=$tgame.Trim()
 	
 	#write-host [$game] [$tgame]
