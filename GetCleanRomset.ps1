@@ -4,24 +4,24 @@ param (
 	$InputFolder,
 	$Includes,
 	$Excludes="unknown",
-	$Clean = $false
+	$Clean=$false
 )
 
 # Method to trace
 function fLogger([string] $str) {
-  $line = [DateTime]::Now.ToString() +" --> "+ $str
-  if ($line -match "ERROR! *")
-    { write-host -FOREGROUND RED $line }
-  elseif ($line -match "WARNING! *")
-    { write-host -FOREGROUND YELLOW $line }
-  else
-    { write-host $line }
+	$line = [DateTime]::Now.ToString() +" --> "+ $str
+	if ($line -match "ERROR! *")
+		{ write-host -FOREGROUND RED $line }
+	elseif ($line -match "WARNING! *")
+		{ write-host -FOREGROUND YELLOW $line }
+	else
+		{ write-host $line }
   
-  if ($activeOutputTraces)
-    { "$line" >> $pathToLogFile }
+	if ($activeOutputTraces)
+		{ "$line" >> $pathToLogFile }
 }
 
-function fCopyFile([string] $entry, [string] $filters) {
+function fCopyFile([string] $entry, [array] $includes, [array] $excludes) {
 	if(!(Test-Path -Path $outputFolder)){
 		New-Item -ItemType directory -Path $outputFolder > $null
 		#fLogger ("directory ["+$output+"] created.")
@@ -40,15 +40,13 @@ function fCopyFile([string] $entry, [string] $filters) {
 		else {
 			# CHECK IF ROM IS ALREADY EXISTS INTO OUTPUT FOLDER
 			if ((Test-Path $outputFolder"\"$title"*") -eq $true) {
-				fLogger ("WARNING! ["+$outputFolder+"\"+$title+"] already exists.")
+				fLogger ("WARNING! ["+$outputFolder+"\"+$title+"] ALREADY EXISTS.")
 				return;
 			}
 			
-			$filtersStr=$filters.split(',')
-			foreach ($f in $filtersStr) {
-				$current=$title+"*"+$f+"*"
-				echo $current
-				if (Test-Path $InputFolder"\"$current) {
+			foreach ($f in $includes) {
+				$current=$title+" "+$f.Trim("*")+"*"
+				if (Test-Path $InputFolder"\"$current -Exclude $excludes) {
 					fLogger ("FIND AND COPY FILE ["+$InputFolder+"\"+$current+"]!")
 					copy-item -Path $InputFolder"\"$current -Destination $outputFolder
 					break;
@@ -107,7 +105,7 @@ if (Test-Path $InputFolder) {
 	$Excludes=$Excludes.Replace(",", "*,*")
 	$ExcludesArr=$Excludes.split(',')
 	
-	Get-ChildItem $InputFolder"\*" -Include @($IncludesArr) -Exclude @($ExcludesArr) | sort Name | ForEach-Object { fCopyFile $_ $Includes; }
+	Get-ChildItem $InputFolder"\*" -Include @($IncludesArr) -Exclude @($ExcludesArr) | sort Name | ForEach-Object { fCopyFile $_ $IncludesArr $ExcludesArr; }
 	fLogger ("END: CHECK OUTPUT LOCATION ["+$outputFolder+"].")
 }
 else {
