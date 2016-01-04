@@ -15,3 +15,11 @@ Arguments:<br/>
 -Excludes     : files to excludes (Optional)<br/>
 -Clean        : delete duplicated roms (Optional)<br/>
 -OutputFolder : roms destination folder (Optional)<br/>
+
+ScrapGameDB.ps1
+=======================
+A powershell games scraper.
+
+EScrapGameDB.ps1
+=======================
+A powershell games scraper (generate an emulationstation gamelist.xml file).
