@@ -1,7 +1,7 @@
 # POWERSHELL
 This folder contains some usefull powershell scripts.
 
-#GetCleanRomset.ps1
+# GetCleanRomset.ps1
 Open powershell prompt, then:<br/>
 wget https://raw.githubusercontent.com/frthery/POWERSHELL/master/GetCleanRomset.ps1 -OutFile GetCleanRomset.ps1
 
@@ -15,10 +15,8 @@ Arguments:<br/>
 -Clean        : delete duplicated roms (Optional)<br/>
 -OutputFolder : roms destination folder (Optional)<br/>
 
-ScrapGameDB.ps1
-=======================
+# ScrapGameDB.ps1
 A powershell games scraper.
 
-EScrapGameDB.ps1
-=======================
+# EScrapGameDB.ps1
 A powershell games scraper (generate an emulationstation gamelist.xml file).
