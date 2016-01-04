@@ -79,9 +79,9 @@ function GetGameTitle($game) {
 }
 
 ###################################################### Variables Declaration
-$scriptFullPath 	= ($MyInvocation.MyCommand).Definition
-$scriptName			= ($MyInvocation.MyCommand).Name
-$scriptPath 		= ($MyInvocation.MyCommand).Definition.Replace(($MyInvocation.MyCommand).Name, "")
+$scriptFullPath = ($MyInvocation.MyCommand).Definition
+$scriptName = ($MyInvocation.MyCommand).Name
+$scriptPath = ($MyInvocation.MyCommand).Definition.Replace(($MyInvocation.MyCommand).Name, "")
 
 $activeOutputTraces = $true
 $pathToLogFile = $scriptName+".log.txt"
@@ -104,10 +104,12 @@ if (Test-Path $InputFolder) {
 	$Includes="*"+$Includes+"*"
 	$Includes=$Includes.Replace(",", "*,*")
 	$IncludesArr=$Includes.split(',')
+	#echo $IncludesArr
 	
 	$Excludes="*"+$Excludes+"*"
 	$Excludes=$Excludes.Replace(",", "*,*")
 	$ExcludesArr=$Excludes.split(',')
+	#echo $ExcludesArr
 	
 	Get-ChildItem $InputFolder"\*" -Include @($IncludesArr) -Exclude @($ExcludesArr) | sort Name | ForEach-Object { fCopyFile $_ $IncludesArr $ExcludesArr; }
 	fLogger ("END: CHECK OUTPUT LOCATION ["+$OutputFolder+"].")
