@@ -274,9 +274,9 @@ function fHelp() {
 }
 
 ###################################################### Variables Declaration
-$scriptFullPath 	= ($MyInvocation.MyCommand).Definition
-$scriptName			= ($MyInvocation.MyCommand).Name
-$scriptPath 		= ($MyInvocation.MyCommand).Definition.Replace(($MyInvocation.MyCommand).Name, "")
+$scriptFullPath = ($MyInvocation.MyCommand).Definition
+$scriptName = ($MyInvocation.MyCommand).Name
+$scriptPath = ($MyInvocation.MyCommand).Definition.Replace(($MyInvocation.MyCommand).Name, "")
 
 if ((fAnalyzeAgrs $args "-h") -eq $true) { 
 	fHelp; exit 0;
