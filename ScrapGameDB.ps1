@@ -278,7 +278,7 @@ $scriptFullPath = ($MyInvocation.MyCommand).Definition
 $scriptName = ($MyInvocation.MyCommand).Name
 $scriptPath = ($MyInvocation.MyCommand).Definition.Replace(($MyInvocation.MyCommand).Name, "")
 
-if ((fAnalyzeAgrs $args "-h") -eq $true) { 
+if (((fAnalyzeAgrs $args "-h") -eq $true) -Or ((fAnalyzeAgrs $args "-?") -eq $true)) {
 	fHelp; exit 0;
 }
 
@@ -347,7 +347,9 @@ if ($GameId -ne $null) {
 
 # SAVE OUTPUTFILE
 $count_nodes=$xml.selectnodes("//Data/Game").count
-fLogger ("GAMES FOUND: [" + $count_nodes + "]/[" + $count + "]")
-$xml.Save($outputXmlFile)
+if ($count_nodes -ne "") {
+	fLogger ("GAMES FOUND: [" + $count_nodes + "]/[" + $count + "]")
+	$xml.Save($outputXmlFile)
+}
 
 exit 0

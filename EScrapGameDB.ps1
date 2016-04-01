@@ -184,8 +184,12 @@ $scriptFullPath = ($MyInvocation.MyCommand).Definition
 $scriptName = ($MyInvocation.MyCommand).Name
 $scriptPath = ($MyInvocation.MyCommand).Definition.Replace(($MyInvocation.MyCommand).Name, "")
 
-if ((fAnalyzeAgrs $args "-h") -eq $true) { 
+if (((fAnalyzeAgrs $args "-h") -eq $true) -Or ((fAnalyzeAgrs $args "-?") -eq $true)) {
 	fHelp; exit 0;
+}
+
+if ($ES_System -eq $null) {
+	fHelp; exit -1;
 }
 
 $activeOutputTraces = $true
