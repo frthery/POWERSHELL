@@ -270,7 +270,7 @@ function fHelp() {
 	write-host "SCRAP GAME-ID: ./"$ScriptName" [-System '<<system>>'] -GameId '<<game_id>>'"
 	write-host "GENERATE SYSTEM DATABASE: ./"$ScriptName" -System '<<system>>' -InputFolder '<<rom_folder>>'"
 	write-host "UPDATE SYSTEM DATABASE: ./"$ScriptName" -System '<<system>>' -UpdateDatabase '<<database_file>>'"
-	write-host ("`r`n[SUPPORTED_SYSTEMS]: Nintendo Entertainment System (NES), Super Nintendo (SNES), Nintendo Game Boy, Nintendo Game Boy Color, Nintendo Game Boy Advance, Sega Mega Drive, Sega Genesis, Sega Master System, Amiga, Arcade, TurboGrafx 16")
+	write-host ("`r`n[SUPPORTED_SYSTEMS]: Nintendo Entertainment System (NES), Super Nintendo (SNES), Nintendo 64, Nintendo Game Boy, Nintendo Game Boy Color, Nintendo Game Boy Advance, Sega Mega Drive, Sega Genesis, Sega Master System, Amiga, Arcade, TurboGrafx 16")
 }
 
 ###################################################### Variables Declaration

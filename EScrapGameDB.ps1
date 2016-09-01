@@ -175,7 +175,7 @@ function GetGameInfosById($oXMLRoot, $system, $id, $title, $romname) {
 function fHelp() {
 	write-host "`r`nUsage:"
 	write-host "GENERATE ES DATABASE: ./"$ScriptName" -GameDbSource '<<thegamesdb.net|screenscraper>>' -ES_System '<<es_system>>' -Database '<<database_file>>'"
-	write-host ("`r`n[SUPPORTED_SYSTEMS]: Nintendo Entertainment System (NES), Super Nintendo (SNES), Nintendo Game Boy, Nintendo Game Boy Color, Nintendo Game Boy Advance, Sega Mega Drive, Sega Genesis, Sega Master System, Amiga, Arcade, TurboGrafx 16")
+	write-host ("`r`n[SUPPORTED_SYSTEMS]: Nintendo Entertainment System (NES), Super Nintendo (SNES), Nintendo 64, Nintendo Game Boy, Nintendo Game Boy Color, Nintendo Game Boy Advance, Sega Mega Drive, Sega Genesis, Sega Master System, Amiga, Arcade, TurboGrafx 16")
 	write-host ("`r`n[SUPPORTED_ES_SYSTEMS]: nes, snes, gb, gbc, gba, megadrive, mastersystem, amiga, fba, pcengine")
 }
 
